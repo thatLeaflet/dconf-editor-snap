@@ -1,0 +1,52 @@
+name: dconf-editor
+title: Dconf Editor (unofficial)
+version: 45.0.1
+license: GPL-3.0+
+website: https://apps.gnome.org/DconfEditor/
+source-code: https://gitlab.gnome.org/GNOME/dconf-editor
+issues: https://github.com/thatLeaflet/dconf-editor-snap/issues
+type: app
+icon: snap/gui/dconf-editor.svg
+summary: A graphical tool for editing the dconf database
+description: |
+  Dconf Editor is a tool to allow direct editing of the dconf configuration database. This is useful when developing applications that use these settings.
+
+  Editing your configuration directly is an advanced feature and may cause applications to not work correctly.
+  
+  Note: This is an unofficial repackaging and is not endorsed by the upstream project.
+
+confinement: strict
+base: core24
+compression: lzo
+grade: stable
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
+  arm64:
+    build-on: [amd64]
+    build-for: [arm64]
+
+parts:
+  dconf-editor:
+    plugin: nil
+    stage-packages:
+      - dconf-editor
+
+slots:
+  dbus-dconf-editor:
+    interface: dbus
+    bus: session
+    name: ca.desrt.dconf-editor
+
+apps:
+  dconf-editor:
+    command: usr/bin/dconf-editor
+    extensions: [gnome]
+    slots:
+      - dbus-dconf-editor
+#    plugs:
+#      - hardware-observe
+#      - system-observe
+#      - network
+#      - etc-osrelease

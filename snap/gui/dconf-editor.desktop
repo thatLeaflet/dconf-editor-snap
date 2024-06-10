@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Dconf Editor
+Comment=A graphical tool for editing the dconf database
+Exec=dconf-editor
+Icon=${SNAP}/meta/gui/dconf-editor.svg
+Terminal=false
+Type=Application
+#NoDisplay=true
+Categories=Utilities;
