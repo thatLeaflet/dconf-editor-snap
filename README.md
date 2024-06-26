@@ -16,7 +16,7 @@ How to set up snapcraft
 How to build the snap
 - Enter a nice working directory (e.g. ~/projects)
 - Download repo: run `git clone https://github.com/thatLeaflet/dconf-editor-snap.git && cd ./dconf-editor-snap`
-- Build the snap: run `snapcraft`
+- Build the snap: run `SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS=1 snapcraft`
 - Install the snap:
   - amd64: run `sudo snap install --dangerous --classic ./dconf-editor_*_amd64.snap`
   - arm64: run `sudo snap install --dangerous --classic ./dconf-editor_*_arm64.snap`
