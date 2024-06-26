@@ -32,6 +32,20 @@ parts:
     plugin: nil
     stage-packages:
       - dconf-editor
+  cleanup:
+    after: [dconf-editor]
+    plugin: nil
+    build-snaps: [gnome-46-2404]
+    override-prime: |
+      set -eux
+      for snap in "gnome-46-2404"; do  # List all content-snaps you're using here
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" "$SNAPCRAFT_PRIME/usr/{}" \;
+      done
+      for CRUFT in bug lintian man; do
+        rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
+      done
+      find $SNAPCRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
+      find $SNAPCRAFT_PRIME/usr/share -type d -empty -delete
 
 slots:
   dbus-dconf-editor:
